@@ -1,0 +1,23 @@
+<h1>Products</h1>
+
+<div class="my-3">
+    <a href="/products?order=asc" class="btn btn-dark">ASC</a>
+    <a href="/products?order=desc" class="btn btn-dark">DESC</a>
+</div>
+
+<form action="/products" method="POST" class="mb-3">
+
+    <input type="text" placeholder="Ingese nombre" name="name" class="form-control my-2">
+    <input type="number" placeholder="Ingese precio" name="price" class="form-control my-2">
+    <button class="btn btn-success" type="submit">Agregar producto</button>
+
+</form>
+
+<ul>
+
+    {{#each products }}
+
+    <li>{{ this.name }} - ${{ this.price }}</li>
+
+    {{/each }}
+</ul>
