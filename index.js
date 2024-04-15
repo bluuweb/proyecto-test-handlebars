@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
     return res.render('home', { title: "Home Page 2.0" });
 });
 
-app.use(serviceRoutes)
+app.use('/services', serviceRoutes)
 
 // 404 para cualquier otra ruta
 app.get('*', (req, res) => {

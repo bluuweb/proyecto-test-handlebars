@@ -3,11 +3,13 @@ import { services } from '../data/services.data.js';
 
 const router = Router()
 
-router.get('/services', (req, res) => {
+// path URL = /services
+
+router.get('/', (req, res) => {
     return res.render('services', { services: services });
 });
 
-router.get('/services/:name', (req, res) => {
+router.get('/:name', (req, res) => {
 
     const nameURL = req.params.name
     const service = services.find((item) => item.url === `/services/${nameURL}`)
