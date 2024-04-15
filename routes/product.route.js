@@ -9,7 +9,6 @@ const router = Router();
 router.get("/", (req, res) => {
   const { order, search, error, success } = req.query;
 
-  // http://localhost:5001/products?search=h&order=asc
   if (order === "asc") {
     products.sort((a, b) => a.price - b.price);
   }
@@ -18,6 +17,7 @@ router.get("/", (req, res) => {
     products.sort((a, b) => b.price - a.price);
   }
 
+  // http://localhost:5001/products?search=h&order=asc
   if (search) {
     const filteredProducts = products.filter((product) =>
       product.name.toLowerCase().includes(search.toLowerCase())
@@ -69,8 +69,6 @@ router.get("/delete/:id", (req, res) => {
   const index = products.indexOf(product);
   products.splice(index, 1);
 
-  console.log("se eliminó");
-
   return res.status(200).redirect("/products?success=Producto eliminado");
 });
 
@@ -115,7 +113,6 @@ router.post("/edit/:id", (req, res) => {
   }
 
   product.name = name;
-
   product.price = Number(price);
 
   return res.status(200).redirect("/products?success=Producto editado");
