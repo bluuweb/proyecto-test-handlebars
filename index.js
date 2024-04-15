@@ -1,8 +1,8 @@
 import express from 'express';
 import { engine } from 'express-handlebars';
-
-import { services } from './data/services.data.js'
 import path from 'path'
+
+import serviceRoutes from './routes/service.route.js'
 
 const app = express();
 
@@ -23,24 +23,7 @@ app.get('/', (req, res) => {
     return res.render('home', { title: "Home Page 2.0" });
 });
 
-app.get('/services', (req, res) => {
-    return res.render('services', { services: services });
-});
-
-app.get('/services/:name', (req, res) => {
-
-    const nameURL = req.params.name // qa
-
-    // cómo buscar algo de un array? re: find (/services/qa)
-    const service = services.find((item) => item.url === `/services/${nameURL}`)
-
-    // undefined
-    if (!service) {
-        return res.render('404', { title: "No se encuentra el servicio" })
-    }
-
-    return res.render('service', { service })
-});
+app.use(serviceRoutes)
 
 // 404 para cualquier otra ruta
 app.get('*', (req, res) => {
