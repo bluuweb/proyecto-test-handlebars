@@ -1,5 +1,17 @@
 <h1>CRUD de archivos</h1>
 
+{{#if error}}
+<div class="alert alert-danger">
+    {{error}}
+</div>
+{{/if}}
+
+{{#if success}}
+<div class="alert alert-success">
+    {{success}}
+</div>
+{{/if}}
+
 <h3>Crear un archivo</h3>
 <form action="/archivos/crear" method="POST">
     <div class="form-group">
