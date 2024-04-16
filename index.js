@@ -4,6 +4,7 @@ import path from 'path'
 
 import serviceRoutes from './routes/service.route.js'
 import productRoutes from './routes/product.route.js'
+import archivoRoutes from './routes/archivo.route.js'
 
 const app = express();
 
@@ -24,19 +25,19 @@ app.engine('.hbs', engine({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, '/views'));
 
-
-
-app.get('/', (req, res) => {
+app.get('/', (_, res) => {
     return res.render('home', { title: "Home Page 2.0" });
 });
 
 // Rutas middlewares
 app.use('/services', serviceRoutes)
 app.use('/products', productRoutes)
+app.use('/archivos', archivoRoutes)
 
 // 404 para cualquier otra ruta
-app.get('*', (req, res) => {
+app.get('*', (_, res) => {
     return res.status(404).render('404', { title: "No se encuentra la página" })
 })
 
-app.listen(5001, () => console.log(`Servidor encendido http://localhost:${5001}`))
+const PORT = process.env.PORT || 5001
+app.listen(PORT, () => console.log(`Servidor encendido http://localhost:${PORT}`))
